@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="takePhoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="container">
+    <h1>Scanner qr code</h1>
+ 
+    <!-- for select files -->
+    <input
+      #file
+      type="file"
+      (change)="onSelects(file.files)"
+      [multiple]="'multiple'"
+      [accept]="'.jpg, .png, .gif, .jpeg'"
+      class="btn btn-success my-2"
+    />
+    <br />
+
+    <!-- <h3>{{photoTaken | json}}</h3> -->
+    <h3 *ngIf="result">{{result[0].value}}</h3>
+
+    <ngx-scanner-qrcode *ngIf="photoTaken"
+      #actionFile="scanner"
+      [src]="photoTaken"
+      [config]="config"
+      (event)="onEvent($event)"
+    ></ngx-scanner-qrcode>
+  </div>
+
+</ion-content>

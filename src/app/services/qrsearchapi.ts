@@ -15,8 +15,6 @@ export class QrSearchApiService {
   validQr(qr) {
     const url: string = `${this.base_start}${qr}${this.base_end}`;
 
-    this.http.get(url).subscribe((res) => {
-      console.log("RESPUESTA DEL ENDPOINT",res);
-    });
+    return this.http.get(url);
   }
 }

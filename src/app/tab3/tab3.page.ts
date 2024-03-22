@@ -75,12 +75,15 @@ export class Tab3Page implements AfterViewInit {
   }
 
   result: any;
+  msj_response: any;
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     // e && action && action.pause();
     this.result = e;
 
-    this.QrSearchApi.validQr(e[0].value);
-    console.log('RESULT:', e[0].value);
+    this.QrSearchApi.validQr(e[0].value).subscribe((res: any) => {
+      this.msj_response = res.result;
+      console.log("this.msj_response",this.msj_response)
+    });
   }
 
   public handle(action: any, fn: string): void {
